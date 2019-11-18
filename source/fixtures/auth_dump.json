@@ -1,0 +1,845 @@
+[
+{
+  "model": "auth.group",
+  "pk": 1,
+  "fields": {
+    "name": "\u0421\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u0438",
+    "permissions": [
+      [
+        "view_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "add_product",
+        "webapp",
+        "product"
+      ],
+      [
+        "change_product",
+        "webapp",
+        "product"
+      ],
+      [
+        "delete_product",
+        "webapp",
+        "product"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 2,
+  "fields": {
+    "name": "\u041c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u044b",
+    "permissions": [
+      [
+        "add_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "change_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "delete_orderproduct",
+        "webapp",
+        "orderproduct"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 3,
+  "fields": {
+    "name": "\u041e\u043f\u0435\u0440\u0430\u0442\u043e\u0440\u044b",
+    "permissions": [
+      [
+        "add_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "change_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "delete_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "view_order",
+        "webapp",
+        "order"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.group",
+  "pk": 4,
+  "fields": {
+    "name": "\u041a\u0443\u0440\u044c\u0435\u0440\u044b",
+    "permissions": [
+      [
+        "change_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "view_order",
+        "webapp",
+        "order"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$EDfng6jA7vnt$0YiYg2OIeoi4EUuuY6IXinmEgRQTSbGn9vWw7lTbK+M=",
+    "last_login": "2019-11-17T18:13:08.865Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "\u0410\u0434\u043c\u0438\u043d",
+    "last_name": "\u0410\u0434\u043c\u0438\u043d\u043e\u0432\u0438\u0447",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2019-09-03T06:46:57.824Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$J8PdrylFBmFs$MIpAOVG/eSAx/Ioku61gBhNiWVZymnJYGpZM+pHc1DI=",
+    "last_login": "2019-11-11T14:17:15.865Z",
+    "is_superuser": false,
+    "username": "user",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-11-11T07:39:57Z",
+    "groups": [
+      [
+        "\u0421\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\u0438"
+      ]
+    ],
+    "user_permissions": [
+      [
+        "can_have_piece_of_pizza",
+        "webapp",
+        "product"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$mVlmFO7qJ8IE$xVq3GJTmWOmDyGr6eR8Ui4miUYo0YZEKZw4tJGozZDM=",
+    "last_login": "2019-11-11T14:18:56.332Z",
+    "is_superuser": false,
+    "username": "user_2",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-11-11T13:44:16Z",
+    "groups": [],
+    "user_permissions": [
+      [
+        "add_product",
+        "webapp",
+        "product"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$TuC1ZOxKxw8Z$s09KbfvKvao47kljJarwSTNaOWgnIUDaXmStV50YIVk=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "mike",
+    "first_name": "Mikhail",
+    "last_name": "Vishin",
+    "email": "mvv@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-11-18T11:28:06Z",
+    "groups": [],
+    "user_permissions": [
+      [
+        "add_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "change_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "delete_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "view_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "add_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "change_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "delete_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "view_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "add_group",
+        "auth",
+        "group"
+      ],
+      [
+        "change_group",
+        "auth",
+        "group"
+      ],
+      [
+        "delete_group",
+        "auth",
+        "group"
+      ],
+      [
+        "view_group",
+        "auth",
+        "group"
+      ],
+      [
+        "add_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "change_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "delete_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "view_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "add_user",
+        "auth",
+        "user"
+      ],
+      [
+        "change_user",
+        "auth",
+        "user"
+      ],
+      [
+        "delete_user",
+        "auth",
+        "user"
+      ],
+      [
+        "view_user",
+        "auth",
+        "user"
+      ],
+      [
+        "add_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "change_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "delete_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "view_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "add_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "change_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "delete_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "view_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "add_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "change_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "delete_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "view_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "add_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "change_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "delete_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "view_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "add_product",
+        "webapp",
+        "product"
+      ],
+      [
+        "can_have_piece_of_pizza",
+        "webapp",
+        "product"
+      ],
+      [
+        "change_product",
+        "webapp",
+        "product"
+      ],
+      [
+        "delete_product",
+        "webapp",
+        "product"
+      ],
+      [
+        "view_product",
+        "webapp",
+        "product"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$VkvdyWJuegNP$jxsEBVQyUmOWzIQJ4s0b4qBNL4IpfMr4KFLTxG6ERtw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Bob",
+    "first_name": "Bob",
+    "last_name": "Dillan",
+    "email": "bobdil@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-11-18T11:28:57Z",
+    "groups": [],
+    "user_permissions": [
+      [
+        "add_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "change_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "delete_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "view_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "add_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "change_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "delete_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "view_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "add_group",
+        "auth",
+        "group"
+      ],
+      [
+        "change_group",
+        "auth",
+        "group"
+      ],
+      [
+        "delete_group",
+        "auth",
+        "group"
+      ],
+      [
+        "view_group",
+        "auth",
+        "group"
+      ],
+      [
+        "add_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "change_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "delete_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "view_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "add_user",
+        "auth",
+        "user"
+      ],
+      [
+        "change_user",
+        "auth",
+        "user"
+      ],
+      [
+        "delete_user",
+        "auth",
+        "user"
+      ],
+      [
+        "view_user",
+        "auth",
+        "user"
+      ],
+      [
+        "add_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "change_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "delete_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "view_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "add_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "change_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "delete_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "view_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "add_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "change_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "delete_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "view_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "add_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "change_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "delete_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "view_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "add_product",
+        "webapp",
+        "product"
+      ],
+      [
+        "can_have_piece_of_pizza",
+        "webapp",
+        "product"
+      ],
+      [
+        "change_product",
+        "webapp",
+        "product"
+      ],
+      [
+        "delete_product",
+        "webapp",
+        "product"
+      ],
+      [
+        "view_product",
+        "webapp",
+        "product"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$OVRMQojiGRJF$tNGmcyCCvZDayz9pXw2r4I2clJfIZIC/tae2weH5/b0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Sheren",
+    "first_name": "Sheren",
+    "last_name": "Stone",
+    "email": "sherenstone@mail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-11-18T11:29:37Z",
+    "groups": [],
+    "user_permissions": [
+      [
+        "add_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "change_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "delete_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "view_profile",
+        "accounts",
+        "profile"
+      ],
+      [
+        "add_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "change_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "delete_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "view_logentry",
+        "admin",
+        "logentry"
+      ],
+      [
+        "add_group",
+        "auth",
+        "group"
+      ],
+      [
+        "change_group",
+        "auth",
+        "group"
+      ],
+      [
+        "delete_group",
+        "auth",
+        "group"
+      ],
+      [
+        "view_group",
+        "auth",
+        "group"
+      ],
+      [
+        "add_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "change_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "delete_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "view_permission",
+        "auth",
+        "permission"
+      ],
+      [
+        "add_user",
+        "auth",
+        "user"
+      ],
+      [
+        "change_user",
+        "auth",
+        "user"
+      ],
+      [
+        "delete_user",
+        "auth",
+        "user"
+      ],
+      [
+        "view_user",
+        "auth",
+        "user"
+      ],
+      [
+        "add_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "change_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "delete_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "view_contenttype",
+        "contenttypes",
+        "contenttype"
+      ],
+      [
+        "add_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "change_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "delete_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "view_session",
+        "sessions",
+        "session"
+      ],
+      [
+        "add_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "change_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "delete_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "view_order",
+        "webapp",
+        "order"
+      ],
+      [
+        "add_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "change_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "delete_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "view_orderproduct",
+        "webapp",
+        "orderproduct"
+      ],
+      [
+        "add_product",
+        "webapp",
+        "product"
+      ],
+      [
+        "can_have_piece_of_pizza",
+        "webapp",
+        "product"
+      ],
+      [
+        "change_product",
+        "webapp",
+        "product"
+      ],
+      [
+        "delete_product",
+        "webapp",
+        "product"
+      ],
+      [
+        "view_product",
+        "webapp",
+        "product"
+      ]
+    ]
+  }
+}
+]
