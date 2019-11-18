@@ -2,9 +2,9 @@
 {% block title %}Заказы{% endblock %}
 {% block menu %}
     <li class="nav-item"><a href="{% url 'webapp:index' %}" class="nav-link">На главную</a></li>
-{#    {% if perms.webapp.add_product and perms.webapp.can_have_piece_of_pizza %}#}
-{#        <li class="nav-item"><a href="{% url 'webapp:product_create' %}" class="nav-link">Добавить товар</a></li>#}
-{#    {% endif %}#}
+    {% if perms.webapp.add_order %}
+        <li class="nav-item"><a href="{% url 'webapp:order_create' %}" class="nav-link">Добавить Заказ</a></li>
+    {% endif %}
 {% endblock %}
 {% block content %}
     <h1 class="text-center">Заказы</h1>
@@ -13,14 +13,16 @@
             <div class="col col-3">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ order.first_name }}</h5>
-                        <h5 class="card-title">{{ order.phone }}</h5>
+                        <h5 class="card-title">Имя: <b>{{ order.first_name }}</b></h5>
+                        <h5 class="card-title">Телефон: <b>{{ order.phone }}</b></h5>
+                        <h5 class="card-title">Статус: <b>{{ order.status }}</b></h5>
+                        <a href="{% url 'webapp:order_detail' order.pk %}">Подробнее</a>
 {#                    {% if perms.accounts.delete_order %}#}
 {#                        /<a href="{% url 'accounts:change order' order.pk%}">Редактировать</a>#}
 {#                    {% endif %}#}
-{#                    {% if order.status == 'new' and user.pk == order.user.pk or perms.accounts.delete_order %}#}
-{#                        /<a href="{% url 'accounts:cancel order' order.pk %}">Отменить заказ</a>#}
-{#                    {% endif %}#}
+                    {% if order.status == 'new' and user.pk == order.user.pk or perms.webapp.delete_order %}
+                        /<a href="{% url 'webapp:order_delete' order.pk %}">Отменить Заказ</a>
+                    {% endif %}
                     </div>
                 </div>
             </div>

@@ -28,12 +28,13 @@ class Product(models.Model):
         ]
 
 
+CANCELED = 'canceled'
 ORDER_STATUS_CHOICES = (
     ('new', 'Новый'),
     ('payed', 'Оплачен'),
     ('processing', 'Обработка'),
     ('delivered', 'Доставлен'),
-    ('canceled', 'Отменён')
+    (CANCELED, 'Отменён')
 )
 
 

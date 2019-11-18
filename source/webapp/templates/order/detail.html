@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+    <div class="text-center">
+        <h1>Детали Заказа</h1>
+        <h2>Заказ:{{ order }}</h2>
+        <h3><strong>Цена: </strong>{{ order.ordered_products.total }}</h3>
+        <h3><strong>Статус: </strong>{{ order.get_status_display }}</h3>
+        <h5><strong>Имя заказчика: </strong>{{ order.first_name }}({{ order.last_name}})</h5>
+        <h5><strong>Телефонный номер: </strong>{{ order.phone }}</h5>
+        <h5><strong>Дата создания: </strong>{{ order.created_at }}</h5>
+        <h5><strong>Дата изменения: </strong>{{ order.updated_at }}</h5>
+
+        {% if order.products %}
+            {% for ordered_product in order.ordered_products.all %}
+                   <h6>{{ ordered_product.product.name }}</h6>
+                    <h6>{{ ordered_product.amount }}</h6>
+                    <h6>{{ ordered_product.product.price }}</h6>
+                    <h6>{{ ordered_product.total }}</h6>
+                    {% if order.status == 'new' and user.pk == order.user.pk %}
+{#                            <a href="{% url 'accounts:edit ordered product' ordered_product.pk %}" class="btn btn-primary">Редактировать</a>/#}
+{#                            <a href="{% url 'accounts:remove product from order' ordered_product.pk %}" class="btn btn-danger">Нет в наличии">Удалить из заказа</a>#}
+                    {% endif %}
+            {% endfor %}
+        {% endif %}
+
+{#        <p><a href="{% url 'webapp:product_update' product.pk %}" class="btn btn-primary">Редактировать</a></p>#}
+{#        <p><a href="{% url 'webapp:product_delete' product.pk %}" class="btn btn-danger">Нет в наличии</a></p>#}
+    </div>
+{% endblock %}

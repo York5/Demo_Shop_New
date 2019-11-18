@@ -6,8 +6,8 @@ from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from webapp.forms import BasketOrderCreateForm
-from webapp.models import Product, OrderProduct, Order
-from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from webapp.models import Product, OrderProduct, Order, CANCELED
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from webapp.mixins import StatsMixin
 
@@ -158,24 +158,30 @@ class OrderListView(ListView):
         return super(OrderListView, self).get_queryset()
 
 
-class OrderDetailView(DetailView):
+class OrderDetailView(UserPassesTestMixin, DetailView):
     model = Order
     template_name = 'order/detail.html'
 
-    def get_queryset(self):
-        if self.request.user.has_perm('webapp:view_order'):
-            return Order.objects.all()
-        return self.request.user.orders.all()
+    def test_func(self):
+        order_pk = self.kwargs.get('pk')
+        order = get_object_or_404(Order, pk=order_pk)
+        return self.request.user.has_perm('webapp.view_order') or self.request.user.pk == order.user.pk
 
 
-class OrderCreateView(CreateView):
+class OrderCreateView(PermissionRequiredMixin, CreateView):
     model = Order
-    pass
+    fields = ['user', 'first_name', 'last_name', 'phone', 'email', 'status']
+    template_name = 'order/order_create.html'
+    permission_required = 'webapp.add_order'
+    permission_denied_message = '403 Access Denied!'
+
+    def get_success_url(self):
+        return reverse('webapp:order_detail', kwargs={'pk': self.object.pk})
 
 
 class OrderUpdateView(UpdateView):
-    model = Order
-    pass
+    def get(self, request, *args, **kwargs):
+        pass
 
 
 class OrderDeliverView(View):
@@ -183,9 +189,18 @@ class OrderDeliverView(View):
         pass
 
 
-class OrderCancelView(View):
-    def get(self, request, *args, **kwargs):
-        pass
+class OrderCancelView(PermissionRequiredMixin, DeleteView):
+    model = Order
+    template_name = 'order/order_delete.html'
+    success_url = 'webapp:order_index'
+    permission_required = 'webapp.delete_order'
+    permission_denied_message = '403 Access Denied!'
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.status = CANCELED
+        self.object.save()
+        return redirect('webapp:order_detail', self.object.pk)
 
 
 class OrderProductCreateView(CreateView):

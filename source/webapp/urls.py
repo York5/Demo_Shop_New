@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import IndexView, ProductView, ProductCreateView, BasketChangeView, BasketView,\
-    ProductUpdateView, ProductDeleteView, OrderListView
+    ProductUpdateView, ProductDeleteView, OrderListView, OrderDetailView, OrderCreateView, OrderCancelView
 
 app_name = 'webapp'
 
@@ -14,5 +14,8 @@ urlpatterns = [
     path('products/<int:pk>/delete/', ProductDeleteView.as_view(), name='product_delete'),
 
     path('orders/', OrderListView.as_view(), name='orders_index'),
+    path('orders/<int:pk>/', OrderDetailView.as_view(), name='order_detail'),
+    path('orders/create', OrderCreateView.as_view(), name='order_create'),
+    path('orders/<int:pk>/delete/', OrderCancelView.as_view(), name='order_delete'),
 
 ]
