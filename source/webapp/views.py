@@ -148,14 +148,18 @@ class BasketView(StatsMixin, CreateView):
 
 class OrderListView(ListView):
     template_name = 'order/list.html'
+    context_object_name = 'orders'
 
     def get_queryset(self):
         if self.request.user.has_perm('webapp:view_order'):
-            return Order.objects.all().order_by('-created_at')
-        return self.request.user.orders.all().order_by('-created_at')
+            self.queryset = Order.objects.all().order_by('-created_at')
+        elif self.request.user.is_authenticated:
+            self.queryset = Order.objects.filter(user=self.request.user)
+        return super(OrderListView, self).get_queryset()
 
 
 class OrderDetailView(DetailView):
+    model = Order
     template_name = 'order/detail.html'
 
     def get_queryset(self):
