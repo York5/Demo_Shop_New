@@ -22,9 +22,11 @@
 {#                            <a href="{% url 'accounts:remove product from order' ordered_product.pk %}" class="btn btn-danger">Нет в наличии">Удалить из заказа</a>#}
                     {% endif %}
             {% endfor %}
+{#        {% if order.status == 'new' and user.pk == order.user.pk  %}#}
+            <form action="{% url "webapp:order_product_create" order.pk %}" method="POST" id="add_review">
+                {% include 'partial/form.html' %}
+                <button class="btn btn-success" type="submit">Добавить Продукт к Заказу</button>
+            </form>
         {% endif %}
-
-{#        <p><a href="{% url 'webapp:product_update' product.pk %}" class="btn btn-primary">Редактировать</a></p>#}
-{#        <p><a href="{% url 'webapp:product_delete' product.pk %}" class="btn btn-danger">Нет в наличии</a></p>#}
     </div>
 {% endblock %}

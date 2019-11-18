@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Добавить Товар{% endblock %}
+{% block menu %}
+{% endblock %}
+{% block content %}
+    <h1 class="main_header">Добавить Товар в Заказ</h1>
+    <div class="form_container">
+        <form class="my_form" method="POST" action="">
+            {% include 'partial/form.html' with button_text="Добавить Товар" %}
+        </form>
+    </div>
+{% endblock %}

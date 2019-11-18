@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
-
-from webapp.models import Order, OrderProduct
+from django import forms
+from webapp.models import Order, OrderProduct, Product
 
 
 class BasketOrderCreateForm(ModelForm):
@@ -50,7 +50,12 @@ class ManualOrderForm(ModelForm):
         fields = ['user', 'first_name', 'last_name', 'email', 'phone']
 
 
-class OrderProductForm(ModelForm):
+
+class OrderProductForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(OrderProductForm, self).__init__(*args, **kwargs)
+        self.fields['product'] = forms.ModelChoiceField(queryset=Product.objects.all())
+
     class Meta:
         model = OrderProduct
         fields = ['product', 'amount']

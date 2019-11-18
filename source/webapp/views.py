@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from webapp.forms import BasketOrderCreateForm
+from webapp.forms import BasketOrderCreateForm, OrderProductForm
 from webapp.models import Product, OrderProduct, Order, CANCELED, DELIVERED
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
@@ -167,6 +167,10 @@ class OrderDetailView(UserPassesTestMixin, DetailView):
         order = get_object_or_404(Order, pk=order_pk)
         return self.request.user.has_perm('webapp.view_order') or self.request.user.pk == order.user.pk
 
+    def get_context_data(self, **kwargs):
+        context = super(OrderDetailView, self).get_context_data()
+        context['form'] = OrderProductForm()
+        return context
 
 class OrderCreateView(PermissionRequiredMixin, CreateView):
     model = Order
@@ -220,9 +224,30 @@ class OrderCancelView(PermissionRequiredMixin, DeleteView):
         return redirect('webapp:order_detail', self.object.pk)
 
 
-class OrderProductCreateView(CreateView):
+class OrderProductCreateView(UserPassesTestMixin, CreateView):
     model = OrderProduct
-    pass
+    form_class = OrderProductForm
+    template_name = 'order/order_product_create.html'
+
+    def test_func(self):
+        order = self.get_order()
+        return self.request.user.has_perm('webapp.add_orderproduct') \
+               or (self.request.user.pk == order.user.pk and order.status == 'new')
+
+    def get_order(self):
+        order_pk = self.kwargs['pk']
+        order = get_object_or_404(Order, pk=order_pk)
+        return order
+
+    def form_valid(self, form):
+        self.order = self.get_order()
+        self.object = OrderProduct.objects.create(order=self.order,
+                                                  product=form.cleaned_data['product'],
+                                                  amount=form.cleaned_data['amount'])
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('webapp:order_detail', kwargs={'pk': self.object.order.pk})
 
 
 class OrderProductUpdateView(UpdateView):
