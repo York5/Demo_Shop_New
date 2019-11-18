@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+    Редактирование заказа
+{% endblock %}
+{% block content %}
+    <div class="row w-50 justify-content-center">
+        <form action="{% url 'webapp:order_update' order.pk %}" method="POST">
+            {% include "partial/form.html" %}
+            <div class="btn btn-group">
+                <button type="submit" class="btn btn-primary">Coхранить</button>
+                <a href="{% url 'webapp:order_detail' order.pk %}" class="btn btn-danger">Отмена</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

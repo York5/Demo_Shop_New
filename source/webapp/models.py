@@ -29,11 +29,12 @@ class Product(models.Model):
 
 
 CANCELED = 'canceled'
+DELIVERED = 'delivered'
 ORDER_STATUS_CHOICES = (
     ('new', 'Новый'),
     ('payed', 'Оплачен'),
     ('processing', 'Обработка'),
-    ('delivered', 'Доставлен'),
+    (DELIVERED, 'Доставлен'),
     (CANCELED, 'Отменён')
 )
 
@@ -58,6 +59,9 @@ class Order(models.Model):
     class Meta:
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
+        permissions = [
+            ('is_courier', 'Can deliver Заказ'),
+        ]
 
 
 class OrderProduct(models.Model):

@@ -17,11 +17,14 @@
                         <h5 class="card-title">Телефон: <b>{{ order.phone }}</b></h5>
                         <h5 class="card-title">Статус: <b>{{ order.status }}</b></h5>
                         <a href="{% url 'webapp:order_detail' order.pk %}">Подробнее</a>
-{#                    {% if perms.accounts.delete_order %}#}
-{#                        /<a href="{% url 'accounts:change order' order.pk%}">Редактировать</a>#}
-{#                    {% endif %}#}
+                    {% if perms.webapp.change_order %}
+                        /<a href="{% url 'webapp:order_update' order.pk%}">Редактировать</a>
+                    {% endif %}
                     {% if order.status == 'new' and user.pk == order.user.pk or perms.webapp.delete_order %}
                         /<a href="{% url 'webapp:order_delete' order.pk %}">Отменить Заказ</a>
+                    {% endif %}
+                    {% if perms.webapp.is_courier and order.status != 'delivered' %}
+                        /<a href="{% url 'webapp:order_delivered' order.pk %}">Доставить Заказ</a>
                     {% endif %}
                     </div>
                 </div>

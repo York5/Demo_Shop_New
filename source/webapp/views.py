@@ -6,7 +6,7 @@ from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from webapp.forms import BasketOrderCreateForm
-from webapp.models import Product, OrderProduct, Order, CANCELED
+from webapp.models import Product, OrderProduct, Order, CANCELED, DELIVERED
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from webapp.mixins import StatsMixin
@@ -180,13 +180,30 @@ class OrderCreateView(PermissionRequiredMixin, CreateView):
 
 
 class OrderUpdateView(UpdateView):
-    def get(self, request, *args, **kwargs):
-        pass
+    model = Order
+    template_name = 'order/order_update.html'
+    fields = ['first_name', 'last_name', 'phone', 'email', 'status']
+    permission_required = 'webapp.change_order'
+    permission_denied_message = '403 Access Denied!'
+
+    def get_success_url(self):
+        return reverse('webapp:order_detail', kwargs={'pk': self.object.pk})
 
 
-class OrderDeliverView(View):
+class OrderDeliverView(PermissionRequiredMixin, DeleteView):
+    model = Order
+    template_name = 'order/order_delivered.html'
+    permission_required = 'webapp.is_courier'
+    permission_denied_message = "403 Access Denied!"
+
+    def get_success_url(self):
+        return reverse('webapp:order_detail', kwargs={'pk': self.object.pk})
+
     def get(self, request, *args, **kwargs):
-        pass
+        self.object = self.get_object()
+        self.object.status = DELIVERED
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class OrderCancelView(PermissionRequiredMixin, DeleteView):

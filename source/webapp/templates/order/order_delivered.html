@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+    Доставка Заказа
+{% endblock %}
+
+{% block content %}
+    <h1>Доставка заказа: <b>{{ order }}</b></h1>
+    <h3>Вы уверены что хотите отменить заказ как "Доставлен"? </h3>
+    <form action="{% url 'webapp:order_delivered' order.pk%}" method="POST">
+        {% csrf_token %}
+        <div class="btn-group">
+            <button class="btn btn-success" type="submit">Доставить Заказ</button>
+            <a class="btn btn-danger" href="{% url 'webapp:order_detail' order.pk %}">Отмена</a>
+        </div>
+    </form>
+{% endblock
